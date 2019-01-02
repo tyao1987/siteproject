@@ -1,0 +1,375 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">编辑场点</h3>
+  </div>
+  <div class="panel-body">
+  
+<?php
+	if($this->error){
+?>
+<div class="alert alert-danger">
+	<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+<!-- 	<strong> Error </strong> The following errors have occurred:  -->
+	<ul>
+	<?php 
+	  foreach ($this->error as $key=>$value):
+	 ?>
+	 	<?php if(is_array($value)): ?>
+	 		<?php foreach ($value as $k=>$v): ?>
+	 		<!--  <li> <?php echo $key.' '.$k.' : '.$v;  ?> </li>-->
+	 		<li> <?php echo $v;  ?> </li>
+	 		<?php endforeach; ?>
+	 	<?php else: ?>
+	 	<li><?php echo $value; ?> </li>
+	 	<?php endif; ?>
+	<?php
+	  endforeach;
+	 ?>
+	 </ul>
+</div>
+<?php } ?>
+
+
+  		<?php 
+  		$form = $this->form;
+  		$form->prepare();
+  		echo $this->form()->openTag($form);
+  		?>
+<fieldset>
+		  <br/>
+		  
+		   <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">场点ID(必填,唯一):</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('site_id');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">场点名称(必填,唯一):</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('name');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		 
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">地址(必填):</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('address');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">东经:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('gps_e');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">北纬:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('gps_n');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		   <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">image_url:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('image_url');
+				    echo $this->formInput($name);
+				?>
+				<input type="file" id="chooseImage" name="file">
+			    <!--  <img id="cropedBigImg" <?php if($this->imagePath): echo "src=\"".$this->imagePath."\"";endif;?> value='custom' alt="请上传图片" data-address='' title="自定义背景"/>-->
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">维护单位(必填):</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('maintenancer');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">运营商(必填):</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('operator');
+				    echo $this->formselect($name);
+				?>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">是否自建:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('is_customized');
+				    echo $this->formselect($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">是否私网:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('is_private');
+				    echo $this->formselect($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">是否支持mac认证:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('is_mac_auth');
+				    echo $this->formselect($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">审计设备号(必填):</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('audit_id');
+				    echo $this->formselect($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">session_timeout:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('session_timeout');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">idle_timeout:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('idle_timeout');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">grace_period:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('grace_period');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">网络负责人:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('network_user');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">项目负责人:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('project_user');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">覆盖范围:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('cover_range');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		   <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">行政区划:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('district_id');
+				    echo $this->formselect($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">描述:</label>
+			<div class="col-sm-10">
+		    	<?php
+		    	     $name = $form->get('description');
+		    	     echo $this->formtextarea($name);
+				?>
+		    </div>
+		  </div>
+
+		  		  
+		  <div class="form-group">
+		  <label for="inputId" class="col-sm-2 control-label"></label>
+		  <div class="col-sm-10">
+		  <?php echo $this->formElement($form->get('user_id')) ?>
+		  <?php echo $this->formElement($form->get('project_id')) ?>
+		  <?php echo $this->formElement($form->get('id')) ?>
+		  <?php echo $this->formElement($form->get('submit')) ?>&nbsp;<?php echo $this->formElement($form->get('cancel')) ?>
+		  </div>
+		  </div>		   	
+</fieldset>		
+		<?php echo $this->form()->closeTag() ?>
+</div>
+</div>
+<div id="site_tag_div" class="panel panel-default">
+	<table id="site_tag_table" class="table table-striped">
+			<tr>
+				<th>标签名称</th>
+				<th>操作</th>
+			</tr>
+			<?php 
+			 if($this->tagList):
+			?>
+			<tr>
+				<th>
+					<select id="tagSelect">
+				<?php 
+				    foreach ($this->tagList as $tag):
+				?>
+					<option value="<?php echo $tag['id']?>"><?php echo $this->escapehtml($tag['name']);?></option>
+				<?php 
+				    endforeach;
+				?>
+					</select>
+					<button id="addSiteTag">新增</button>
+						
+				</th>
+				<th></th>
+			</tr>
+			<?php
+			 endif;
+			 if($this->siteTagList):
+			     foreach ($this->siteTagList as $key => $value):
+			 ?>
+			<tr>
+			<td><?php echo $this->escapehtml($this->GetTagById($value['tag_id'])['name']); ?></td>
+			<td><a class="removeSiteTag" style="cursor:pointer" site_tag_id="<?php echo $value['id'];?>">删除</a></td>
+			</tr>
+			<?php 
+			     endforeach;
+			 endif;
+			?>
+<!-- 			<tr> -->
+<!-- <td>修改时间</td> -->
+<!-- 			</tr> -->
+
+	</table>
+
+</div>
+
+
+
+
+<script>
+
+$(document).on("click",'.removeSiteTag',function(e){
+	var r = confirm("确定删除吗?");
+	if(r == false){
+		return false;
+	}
+	e.stopPropagation();
+	var siteTagId = $(this).attr('site_tag_id');
+	var trlink = $(this).parents("tr");
+	$.ajax({
+		url: "/sites/removeTag",
+		type: "POST",
+		dataType: "json",
+		data: { siteTagId: siteTagId },
+		success: function(result) {
+			trlink.remove();
+		}
+	});
+});
+
+$('#chooseImage').on('change',function(){
+	var filePath = $(this).val();
+	var fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase();
+	// 检查是否是图片
+	if(fileFormat != '.png' && fileFormat != '.jpg' && fileFormat != '.jpeg') {
+		$(this).val('');
+		alert('上传错误,文件格式必须为：png/jpg/jpeg');
+	    return;  
+	}
+	//src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+    //$('#cropedBigImg').attr('src',src);
+});
+
+	(function($){
+		var siteId = $("#id").val();
+		if(siteId > 0){
+			$("#addSiteTag").click(function(e){
+				var tagId = $("#tagSelect").val();
+				$(this).attr("disabled",true);
+				$.ajax({
+						url: "/sites/addTag",
+						type: "POST",
+						dataType: "json",
+						data: { siteId: siteId, tagId: tagId },
+						success: function(result) {
+							var data = result.data;
+							if(data.tagName != ''){
+								var rowTem = '<tr>'
+					                + '<td>'+data.tagName+'</td>'
+					                + '<td><a style="cursor:pointer" class="removeSiteTag" site_tag_id="'+data.id+'" >删除</a></td>'
+					                + '</tr>';
+								$("#site_tag_table tbody:last").append(rowTem);
+							}
+							
+						},
+						complete: function() {
+							$("#addSiteTag").attr("disabled",false);
+						}
+				});
+			});
+		}else{
+			$("#site_tag_div").remove();
+		}
+	})(jQuery);
+
+</script>

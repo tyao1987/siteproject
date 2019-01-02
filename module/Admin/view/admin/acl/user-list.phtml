@@ -1,0 +1,125 @@
+<?php
+use Admin\Model\Auth;
+?>
+
+<!--  <h3>User List</h3>-->
+
+<div class="panel panel-default">
+  <div class="panel-body">
+  <a href="/acl/user-add"><span class="glyphicon glyphicon-plus"></span>添加用户</a>
+  </div>
+</div>
+
+<div class="panel panel-default">
+
+
+      <div class="panel-body">
+        <form name="search" class="form-inline" role="form" action="/acl/user-list" method="get">
+       
+          <div class="form-group">
+            <input value="<?php echo $this->param['name'];?>" type="text" name="name" class="form-control" id="name" placeholder="用户名">
+          </div>
+          
+          <div class="form-group">
+            <input value="<?php echo $this->param['real_name'];?>" type="text" name="real_name" class="form-control" id="name" placeholder="真实姓名">
+          </div>
+          
+       <!--     <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">是否删除:</div>
+              <select class="form-control"  name="is_delete" id="is_delete">
+                <option value=1 <?if( $this->param['is_delete'] == 1){echo "selected";}?>>是</option>
+                <option value=0 <?if( $this->param['is_delete'] == 0){echo "selected";}?>>否</option>
+              </select>
+            </div>
+          </div>-->
+          
+          <button type="submit" class="btn btn-primary">搜索</button>
+          
+          </form>
+          </div>
+
+  <div class="panel-body">
+	<table class="table table-striped">
+			<tr>
+				<th>用户名</th>
+				<th>真实姓名</th>
+				<th>创建时间</th>
+				<th>状态</th>
+				<th>操作</th>
+			</tr> 
+			 <?php foreach ($this->paginator as $user){ ?>
+			<tr>
+			    <td> <?php echo $this->escapehtml($user['name']); ?>  </td>
+			    <td> <?php echo $this->escapehtml($user['real_name']); ?> </td>
+			    <td> <?php echo $this->escapehtml(date("Y-m-d",strtotime($user['create_time']))); ?> </td>
+			    <td>
+			    	<?php 
+			    	    if($user['is_active'] == 1):
+			    	        echo "启用";
+			    	    else:
+			    	        echo "禁用";
+			    	    endif;
+			    	?>
+			    </td> 
+			   
+			    <td>
+			    <?php 
+			         $identity = Auth::getIdentity();
+			         if($user['id'] != 1):
+			             if($user['id'] == $identity['id'] && $user['parent_id'] == 1):
+			             
+			             else:
+			      ?>
+			       <a <?php if($user['is_active'] == 1){ echo "class=\"unactive\"";}?> href="<?php echo $this->url("default",array(
+			    		"controller"=>"acl",
+			    		"action" => "user-active",
+			    		"id" => $user['id']
+			    )); ?>">
+			     <?php 
+			    	    if($user['is_active'] == 1):
+			    	        echo "禁用";
+			    	    else:
+			    	        echo "启用";
+			    	    endif;
+			    	?>
+			    </a>&nbsp;&nbsp;
+			      <?php        
+			             endif;
+			    ?>	
+			   
+			   
+			    <?php 
+			         endif;
+			    ?>
+			    <a href="<?php echo $this->url("default",array(
+			    		"controller"=>"acl",
+			    		"action" => "user-manage",
+			    		"id" => $user['id']
+			    )); ?>">编辑</a>&nbsp;&nbsp;
+			    </td>
+			    
+			</tr>
+			<?php } ?>
+	</table>
+	
+	<?php
+        
+	 	// add at the end of the file after the table
+	 	try {
+			echo $this->paginationControl(
+			    // the paginator object
+			    $this->paginator,
+			    'sliding',
+			    // the partial to use to render the control
+			    array('partial/paginator.phtml', 'Admin'),
+			    // the route to link to when a user clicks a control link
+			    array("route"=>'default','route_params'=>array('controller'=>'acl','action'=>'user-list'))
+			);
+		}catch (\Exception $e){
+			echo $e->getMessage();
+		}
+	
+	?>
+</div>
+</div>

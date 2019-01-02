@@ -1,0 +1,350 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">编辑APP资源</h3>
+  </div>
+  <div class="panel-body">
+  
+<?php
+	if($this->error){
+?>
+<div class="alert alert-danger">
+	<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+<!-- 	<strong> Error </strong> The following errors have occurred:  -->
+	<ul>
+	<?php 
+	  foreach ($this->error as $key=>$value):
+	 ?>
+	 	<?php if(is_array($value)): ?>
+	 		<?php foreach ($value as $k=>$v): ?>
+	 		<!--  <li> <?php echo $key.' '.$k.' : '.$v;  ?> </li>-->
+	 		<li> <?php echo $v;  ?> </li>
+	 		<?php endforeach; ?>
+	 	<?php else: ?>
+	 	<li><?php echo $value; ?> </li>
+	 	<?php endif; ?>
+	<?php
+	  endforeach;
+	 ?>
+	 </ul>
+</div>
+<?php } ?>
+
+
+  		<?php 
+  		$form = $this->form;
+  		$form->prepare();
+  		echo $this->form()->openTag($form);
+  		?>
+<fieldset>
+		  <br/>
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">资源名称(必填,唯一):</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('name');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		   <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">Wi-Fi开放时间:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('open_time');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">网速:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('network_speed');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">营业时间:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('business_time');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">分类(必填):</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('category');
+				    echo $this->formSelect($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">最大在线人数(必填):</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('max_online');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">品牌(必填):</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('brand');
+				    echo $this->formSelect($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">地址:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('address');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">电话:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('phone');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">行政编号:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('district_id');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">精度:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('gps_precision');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">展示级别(必填):</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('display_level');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">楼层:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('floor');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">楼层坐标X:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('coordinate_x');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">楼层坐标Y:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('coordinate_y');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">海拔:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('altitude');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">覆盖点坐标:</label>
+			<div class="col-sm-10">
+		    	<?php
+		    	     $name = $form->get('cover_point');
+		    	     echo $this->formtextarea($name);
+				?>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">覆盖范围坐标:</label>
+			<div class="col-sm-10">
+		    	<?php
+		    	     $name = $form->get('cover_range');
+		    	     echo $this->formtextarea($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">描述:</label>
+			<div class="col-sm-10">
+		    	<?php
+		    	     $name = $form->get('description');
+		    	     echo $this->formtextarea($name);
+				?>
+		    </div>
+		  </div>
+		  		  
+		  <div class="form-group">
+		  <label for="inputId" class="col-sm-2 control-label"></label>
+		  <div class="col-sm-10">
+		  <?php echo $this->formElement($form->get('user_id')) ?>
+		  <?php echo $this->formElement($form->get('project_id')) ?>
+		  <?php echo $this->formElement($form->get('id')) ?>
+		  <?php echo $this->formElement($form->get('submit')) ?>&nbsp;<?php echo $this->formElement($form->get('cancel')) ?>
+		  </div>
+		  </div>		   	
+</fieldset>		
+		<?php echo $this->form()->closeTag() ?>
+</div>
+</div>
+
+<div id="site_app_div" class="panel panel-default">
+	<table id="site_app_table" class="table table-striped">
+			<tr>
+				<th>场点名称</th>
+				<th>操作</th>
+			</tr>
+			<?php 
+			 if($this->siteList):
+			?>
+			<tr>
+				<th>
+					<select id="siteSelect">
+				<?php 
+				    foreach ($this->siteList as $site):
+				?>
+					<option value="<?php echo $site['id']?>"><?php echo $this->escapehtml($site['name']);?></option>
+				<?php 
+				    endforeach;
+				?>
+					</select>
+					<button id="addSiteApp">新增</button>
+						
+				</th>
+				<th></th>
+			</tr>
+			<?php
+			 endif;
+			 if($this->siteAppList):
+			 foreach ($this->siteAppList as $key => $value):
+			 ?>
+			<tr>
+			<td><?php echo $this->escapehtml($this->GetSiteById($value['site_id'])['name']); ?></td>
+			<td><a class="removeSiteApp" style="cursor:pointer" site_app_id="<?php echo $value['id'];?>">删除</a></td>
+			</tr>
+			<?php 
+			     endforeach;
+			 endif;
+			?>
+<!-- 			<tr> -->
+<!-- <td>修改时间</td> -->
+<!-- 			</tr> -->
+
+	</table>
+
+</div>
+
+
+
+
+<script>
+
+$(document).on("click",'.removeSiteApp',function(e){
+	var r = confirm("确定删除吗?");
+	if(r == false){
+		return false;
+	}
+	e.stopPropagation();
+	var siteAppId = $(this).attr('site_app_id');
+	var trlink = $(this).parents("tr");
+	$.ajax({
+		url: "/appresource/removeSite",
+		type: "POST",
+		dataType: "json",
+		data: { siteAppId: siteAppId },
+		success: function(result) {
+			trlink.remove();
+		}
+	});
+});
+
+	(function($){
+		var appId = $("#id").val();
+		if(appId > 0){
+			$("#addSiteApp").click(function(e){
+				var siteId = $("#siteSelect").val();
+				$(this).attr("disabled",true);
+				$.ajax({
+						url: "/appresource/addSite",
+						type: "POST",
+						dataType: "json",
+						data: { siteId: siteId, appId: appId },
+						success: function(result) {
+							var data = result.data;
+							if(data.siteName != ''){
+								var rowTem = '<tr>'
+					                + '<td>'+data.siteName+'</td>'
+					                + '<td><a style="cursor:pointer" class="removeSiteApp" site_app_id="'+data.id+'" >删除</a></td>'
+					                + '</tr>';
+								$("#site_app_table tbody:last").append(rowTem);
+							}
+							
+						},
+						complete: function() {
+							$("#addSiteApp").attr("disabled",false);
+						}
+				});
+			});
+		}else{
+			$("#site_app_div").remove();
+		}
+	})(jQuery);
+
+</script>
+
+
+
+ 

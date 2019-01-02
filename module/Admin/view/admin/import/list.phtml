@@ -1,0 +1,65 @@
+<div class="panel panel-default">
+      <div class="panel-body">
+        <form name="search" class="form-inline" role="form" action="/import/list" method="get">
+       
+          <div class="form-group">
+            <input value="<?php echo $this->param['name'];?>" type="text" name="name" class="form-control" id="name" placeholder="标题">
+          </div>
+          <button type="submit" class="btn btn-primary">搜索</button>
+          
+          </form>
+          </div>
+
+  <div class="panel-body">
+	<table class="table table-striped">
+			<tr>
+				<th>标题</th>
+				<th>创建者</th>
+				<th>操作</th>
+			</tr> 
+			 <?php foreach ($this->paginator as $import){ ?>
+			<tr>
+			    <td><?php echo $this->escapehtml($import['name']); ?></td>
+			    <td> <?php echo $this->escapehtml($this->GetUser($import['user_id'])['name']); ?> </td>
+			    <?php 
+			         $project = $this->GetProjectById($import['project_id'])
+			    ?>
+			    <td><button id="exportExcel" filePath="<?php echo $project['file_name'];?>" value="<?php echo $import['name'];?>">导出</button></td>
+			</tr>
+			<?php } ?>
+	</table>
+	
+	<?php
+        
+	 	// add at the end of the file after the table
+	 	try {
+			echo $this->paginationControl(
+			    // the paginator object
+			    $this->paginator,
+			    'sliding',
+			    // the partial to use to render the control
+			    array('partial/paginator.phtml', 'Admin'),
+			    // the route to link to when a user clicks a control link
+			    array("route"=>'default','route_params'=>array('controller'=>'import','action'=>'list'))
+			);
+		}catch (\Exception $e){
+			echo $e->getMessage();
+		}
+	
+	?>
+</div>
+</div>
+<script>
+
+	(function($){
+		$(function(){
+		 	$("#exportExcel").click(function(e){
+			 	var name = $(this).val();
+			 	var file = $(this).attr('filePath');
+			 	window.location.href="/import/"+file +"/"+ name;
+		 		return false;
+			});
+		});
+	})(jQuery);
+
+</script>

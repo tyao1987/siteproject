@@ -1,0 +1,99 @@
+<?php 
+    $currentController = 'apgroup';
+    $listUrl = $this->url("default",array(
+        "controller"=>$currentController,
+        "action" => "list"
+    ));
+?>
+<div class="panel panel-default">
+      <div class="panel-body">
+        <form name="search" class="form-inline" role="form" action="<?=$listUrl;?>" method="get">
+          <div class="form-group">
+            <input value="<?php echo $this->param['name'];?>" type="text" name="name" class="form-control" id="name" placeholder="AP组名称">
+          </div>
+          <!--  
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">是否删除:</div>
+              <select class="form-control" name="is_delete" id="is_delete">
+                <option value=1 <?if( $this->param['is_delete'] == 1){echo "selected";}?>>是</option>
+                <option value=0 <?if( $this->param['is_delete'] == 0){echo "selected";}?>>否</option>
+              </select>
+            </div>
+          </div>
+          -->
+          <button type="submit" class="btn btn-primary">搜索</button>
+          </form>
+          </div>
+
+  <div class="panel-body">
+	<table class="table table-striped">
+			<tr>
+				<th>AP组名称</th>
+				<th>AP组编号</th>
+				<th>创建时间</th>
+				<th>修改时间</th>
+<!-- 				<th>操作</th> -->
+			</tr> 
+			 <?php foreach ($this->paginator as $row){ ?>
+			<tr>
+				<?php 
+    				$editUrl = $this->url("default",array(
+    				    "controller"=>$currentController,
+    				    "action" => "index",
+    				    "id" => $row['id']
+    				));
+				?>
+				
+			    <td><a href="<?php echo $editUrl;?>"> <?php echo $this->escapehtml($row['name']); ?> </a> </td>
+			    <td> <?php echo $this->escapehtml($row['ap_group_id']); ?> </td>
+			    <td> <?php echo $this->escapehtml($row['create_time']); ?> </td>
+			    <td> <?php echo $this->escapehtml($row['update_time']); ?> </td>
+			    <!--
+			    <td>
+			    <?php 
+			         $deleteUrl = $this->url("default",array(
+			             "controller"=>$currentController,
+                         "action" => "delete",
+                         "id" => $row['id']
+			         ));
+			         if($row['is_delete'] == 0):
+    			    ?>			    
+    			    <a class="checkDeleteUrl" href="<?php echo $deleteUrl;?>">删除</a>&nbsp;&nbsp;
+    			    <?php
+    			         endif;
+    			         if($row['is_delete'] == 1):
+        			    ?>
+        			    <a href="<?php echo $this->url("default",array(
+        			        "controller"=>$currentController,
+    			    		"action" => "cancelDelete",
+    			            "id" => $row['id']
+        			    )); ?>">取消删除</a>&nbsp;&nbsp;
+        			    <?php 
+			             endif;
+			             ?>
+			    </td>-->
+			</tr>
+			<?php } ?>
+	</table>
+	
+	<?php
+        
+	 	// add at the end of the file after the table
+	 	try {
+			echo $this->paginationControl(
+			    // the paginator object
+			    $this->paginator,
+			    'sliding',
+			    // the partial to use to render the control
+			    array('partial/paginator.phtml', 'Admin'),
+			    // the route to link to when a user clicks a control link
+			    array("route"=>'default','route_params'=>array('controller'=>$currentController,'action'=>'list'))
+			);
+		}catch (\Exception $e){
+			echo $e->getMessage();
+		}
+	
+	?>
+</div>
+</div>

@@ -1,0 +1,297 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">编辑AP</h3>
+  </div>
+  <div class="panel-body">
+  
+<?php
+	if($this->error){
+?>
+<div class="alert alert-danger">
+	<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+<!-- 	<strong> Error </strong> The following errors have occurred:  -->
+	<ul>
+	<?php 
+	  foreach ($this->error as $key=>$value):
+	 ?>
+	 	<?php if(is_array($value)): ?>
+	 		<?php foreach ($value as $k=>$v): ?>
+	 		<!--  <li> <?php echo $key.' '.$k.' : '.$v;  ?> </li>-->
+	 		<li> <?php echo $v;  ?> </li>
+	 		<?php endforeach; ?>
+	 	<?php else: ?>
+	 	<li><?php echo $value; ?> </li>
+	 	<?php endif; ?>
+	<?php
+	  endforeach;
+	 ?>
+	 </ul>
+</div>
+<?php } ?>
+
+
+  		<?php 
+  		$form = $this->form;
+  		$form->prepare();
+  		echo $this->form()->openTag($form);
+  		?>
+<fieldset>
+		  <br/>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">AP的ID(必填,唯一):</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('ap_id');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">AP名称(必填,唯一):</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('name');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		 
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">AP组名称:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('ap_group_id');
+				    echo $this->formselect($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">场点名称(必填):</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('site_id');
+				    echo $this->formselect($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">AC组名称(必填):</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('ac_cluster_id');
+				    echo $this->formselect($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">主AC名称(必填):</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('first_ac_id');
+				    echo $this->formselect($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">从AC名称:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('second_ac_id');
+				    echo $this->formselect($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">第三AC名称:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('third_ac_id');
+				    echo $this->formselect($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">ip地址(必填,DHCP或IP):</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('ip');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">mac地址(必填,唯一):</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('mac_address');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">东经:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('gps_e');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">北纬:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('gps_n');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">厂商(必填):</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('producer');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">序列号(唯一):</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('serial');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">维保到期时间:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('warranty_time');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">类型:</label>
+		    <div class="col-sm-10">
+		    	<?php
+				    $name = $form->get('type');
+				    echo $this->formInput($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  
+		  <div class="form-group">
+		    <label for="inputId" class="col-sm-2 control-label">描述:</label>
+			<div class="col-sm-10">
+		    	<?php
+		    	     $name = $form->get('description');
+		    	     echo $this->formtextarea($name);
+				?>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		  <label for="inputId" class="col-sm-2 control-label"></label>
+		  <div class="col-sm-10">
+		  <?php echo $this->formElement($form->get('user_id')) ?>
+		  <?php echo $this->formElement($form->get('project_id')) ?>
+		  <?php echo $this->formElement($form->get('id')) ?>
+		  <?php echo $this->formElement($form->get('submit')) ?>&nbsp;<?php echo $this->formElement($form->get('cancel')) ?>
+		  </div>
+		  </div>		   	
+</fieldset>		
+		<?php echo $this->form()->closeTag() ?>
+</div>
+</div>
+
+
+<script>
+
+	(function($){
+		$(function(){
+			var acclusterId = $("#ac_cluster_id").val();
+			var acArray = new Array("first_ac_id","second_ac_id","third_ac_id");
+			var id = $("#id").val();
+			if(id == 0 && acclusterId == ''){
+				initAcSelect();
+			}else{
+				var endStr = "|"+acclusterId+"|";
+				var str = "";
+				var end = "";
+				for(var i = 0; i < acArray.length; i++){
+					$("#"+acArray[i]+" option").each(function(){
+						if($(this).val() != ''){
+							str = $(this).text();
+							var startIndex = str.length - endStr.length;
+							var endIndex = str.length;
+							end = str.substring(startIndex,endIndex);
+							if(end != endStr){
+								$(this).remove();
+							}else{
+								$(this).text(str.substring(0,str.length - endStr.length));
+							}
+						}
+					});
+ 				}
+				
+			}
+			
+			function initAcSelect(){
+ 				for(var i = 0; i < acArray.length; i++){
+ 					$("#"+acArray[i]).html("<option value=''>未选择</option>");
+ 				}
+			}
+			
+			$("#ac_cluster_id").change(function(e){
+				var acClusterId = $(this).val();
+				initAcSelect();
+				$.ajax({
+					url: "/ac/accluster-list",
+					type: "POST",
+					dataType: "json",
+					data: { id: acClusterId },
+					success: function(result) {
+						if(result.length > 0){
+							$.each(result, function(i, item){     
+								$("#first_ac_id").append("<option value='"+item.id+"'>"+item.name+"</option>");
+								$("#second_ac_id").append("<option value='"+item.id+"'>"+item.name+"</option>"); 
+								$("#third_ac_id").append("<option value='"+item.id+"'>"+item.name+"</option>"); 
+							});     
+						}
+					}
+				});
+			});
+		});
+	})(jQuery);
+
+</script>
+<script type="text/javascript" src="/scripts/admin/laydate/laydate.js">
+</script>
+<script type="text/javascript">  
+laydate.render({
+	  elem: '#warranty_time'
+	});
+</script>
+ 
